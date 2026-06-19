@@ -120,6 +120,30 @@ def test_fda_ranker_runs_on_sample():
     assert ranked and ranked[0]["lead_score"] >= ranked[-1]["lead_score"]
 
 
+# ---- report generator ------------------------------------------------------
+def test_report_builds():
+    import report
+    rep = report.build_report(
+        [{"sku": "A1", "description": "men's cotton t-shirt", "annual_value": "1000000",
+          "annual_shipments": "100"}],
+        importer="Test Co")
+    assert rep["importer"] == "Test Co" and rep["sku_count"] == 1
+    assert rep["headline_opportunity_usd"] >= 0
+    md = report.render_markdown(rep)
+    assert "Import Health Report" in md and "opportunity" in md.lower()
+
+
+# ---- refusal-risk eval -----------------------------------------------------
+def test_refusal_eval_runs_on_sample():
+    sys.path.insert(0, os.path.join(ROOT, "evals"))
+    import refusal_eval
+    rows = list(__import__("csv").DictReader(open(refusal_eval.DEFAULT_IRR)))
+    rep = refusal_eval.run(rows, "product_description", "refusal_charges")
+    assert rep["n"] > 0
+    assert 0.0 <= rep["fda_flag_recall"] <= 1.0
+    assert rep["review_recall"] == 1.0          # mock routes everything to review
+
+
 def _run_standalone():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]

@@ -48,7 +48,9 @@ code; the rules layer attaches the authoritative agencies from the chapter.
 | `hts_validator.py` | Validate returned codes against the official HTS table |
 | `pricing.py` | Estimate `opportunity_usd` per account from a result |
 | `store.py` | SQLite audit log + human review queue (reasonable-care trail) |
-| `evals/` | Eval harness + labeled sample → accuracy / calibration / PGA P-R scorecard |
+| `report.py` | **Import Health Report** generator — the one-page prospect artifact |
+| `evals/run_eval.py` | HTS-accuracy eval vs. labeled codes (CROSS rulings / 7501 data) |
+| `evals/refusal_eval.py` | PGA/refusal-risk eval vs. **public FDA denial data** (no protected records) |
 | `tests/test_all.py` | Tests for the deterministic layers (no key/network needed) |
 | `requirements.txt` | `anthropic`, `fastapi`, `uvicorn` |
 
@@ -72,7 +74,22 @@ python store.py --demo
 
 # run the deterministic test suite
 python tests/test_all.py
+
+# generate an Import Health Report (the prospect artifact)
+python report.py products.csv --importer "Acme Imports" --out acme.md
+
+# eval PGA/refusal-risk against public FDA denial data (no protected records needed)
+python evals/refusal_eval.py            # -> FDA-flag recall, review recall, miss-by-charge
 ```
+
+### Two complementary evals
+
+- **`run_eval.py`** — HTS-code accuracy. Needs *approved* labels (CROSS rulings, or
+  your partner's filed 7501 lines). Measures exact-match by level + calibration.
+- **`refusal_eval.py`** — PGA/refusal risk. Uses the **public FDA Import Refusal
+  Report** (*denied* shipments with descriptions + charges) as ground truth: every
+  refused good should have been flagged FDA-regulated and routed to review. Validates
+  the compliance half with zero access to anyone's protected entry data.
 
 ## Usage
 
