@@ -11,16 +11,19 @@ Priority key: **P0** = blocks trust/production, **P1** = high value, **P2** = ni
 
 ---
 
-## 1. Evals (P0) — *we cannot currently prove the classifier is correct*
+## 1. Evals (P0) — *harness built; still needs a real labeled set + key*
 
-The HTS classifier has **never been measured**. It runs, it's structured, it reasons
-via GRI — but there is zero ground truth attached, so "is it right?" is unanswered.
+**Update:** the eval harness now exists — `classifier/evals/run_eval.py` scores HTS
+accuracy at each level (chapter/heading/subheading/full), confidence calibration, and
+PGA precision/recall, and runs today on a 15-row synthetic `labeled_sample.csv`. What
+it can't yet give you is *real* numbers: the model hasn't been run (no key), and the
+sample is synthetic. The classifier itself is still **unmeasured against ground truth**.
 
-**Blocked by:** no labeled dataset; no API key to run the model; no network to pull a
-test corpus.
+**Still blocked by:** no real labeled dataset; no API key to run the model.
 
 **To tackle later:**
-- Build a **labeled eval set**: 500–2,000 products with known-correct 10-digit HTS
+- Replace `labeled_sample.csv` with a real **labeled eval set**: 500–2,000 products
+  with known-correct 10-digit HTS
   codes. Sources: your own historical entry summaries (CBP Form 7501), broker
   records, or CBP **CROSS** rulings (each ruling = a product description + the ruled
   HTS code — a near-perfect labeled pair).
@@ -103,18 +106,23 @@ pass before they're authoritative.
 
 ---
 
-## 5. Accuracy safeguards not yet wired (P1)
+## 5. Accuracy safeguards (P1) — *now built offline; needs data to activate*
 
-Things that protect against being confidently wrong — designed for, not yet built:
+**Update — these now exist:**
+- **HTS code validation** — `classifier/hts_validator.py`; pass `classify(..., hts_table=…)`
+  and an invalid code is rejected and forced to review. Activates when you load the
+  real USITC HTS (§2).
+- **Human-in-the-loop queue + audit log** — `classifier/store.py` (SQLite): logs every
+  classification for the 5-year reasonable-care trail, queues `review_required` items,
+  records broker corrections, and `export_corrections()` feeds them back as eval rows.
+- **`opportunity_usd` pricing** — `classifier/pricing.py` turns a result into a dollar
+  figure (placeholder constants until real duty rates / refusal actuals land).
 
-- **HTS code validation** against the official table (see §2).
-- **Human-in-the-loop queue**: `review_required` items need somewhere to go, and
-  broker corrections should feed back as eval cases / few-shot examples.
-- **Recordkeeping/audit log**: every classification (input, code, GRI path,
-  confidence, reviewer, timestamp) persisted for the 5-year reasonable-care trail CBP
-  expects. Nothing persists today.
+**Still to do:**
+- Wire `store.py` into the live `api.py` request path (log + enqueue on every call).
 - **Binding-ruling path**: for high-value or genuinely ambiguous items, a workflow to
   request a CBP ruling rather than rely on a prediction.
+- Replace pricing/validation placeholders with real USITC duty rates and the HTS table.
 
 ---
 

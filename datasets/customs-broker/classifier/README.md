@@ -45,7 +45,34 @@ code; the rules layer attaches the authoritative agencies from the chapter.
 | `reference.py` | System prompt, JSON output schema, static HTS/GRI reference |
 | `api.py` | FastAPI service (`POST /classify`, `GET /healthz`) |
 | `batch_classify.py` | Bulk catalog classification via the Batch API (50% cheaper) |
+| `hts_validator.py` | Validate returned codes against the official HTS table |
+| `pricing.py` | Estimate `opportunity_usd` per account from a result |
+| `store.py` | SQLite audit log + human review queue (reasonable-care trail) |
+| `evals/` | Eval harness + labeled sample → accuracy / calibration / PGA P-R scorecard |
+| `tests/test_all.py` | Tests for the deterministic layers (no key/network needed) |
 | `requirements.txt` | `anthropic`, `fastapi`, `uvicorn` |
+
+## Accuracy, evals, and recordkeeping
+
+```bash
+# eval scorecard (offline mock; add ANTHROPIC_API_KEY for real numbers)
+python evals/run_eval.py
+# -> HTS accuracy by level (chapter/heading/subheading/full),
+#    confidence calibration buckets, PGA precision/recall/F1
+
+# reject hallucinated codes once the real HTS table is loaded
+python -c "from hts_validator import load_hts_table; t=load_hts_table('hts_2026.csv'); \
+           from hts_pga_classifier import classify; print(classify('cotton t-shirt', hts_table=t)['hts_valid'])"
+
+# dollar-size an account from a result
+python pricing.py --chapter 61 --value 2000000 --shipments 300 --regulated
+
+# audit + review queue (corrections feed back into the eval set)
+python store.py --demo
+
+# run the deterministic test suite
+python tests/test_all.py
+```
 
 ## Usage
 

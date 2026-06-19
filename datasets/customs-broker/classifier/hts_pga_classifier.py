@@ -96,15 +96,23 @@ def _mock_classify(description, attributes):
 
 
 def classify(description, *, attributes=None, model=DEFAULT_MODEL,
-             effort="medium", confidence_threshold=0.8, client=None):
-    """Classify one product. Returns a dict (see README for the shape)."""
+             effort="medium", confidence_threshold=0.8, client=None, hts_table=None):
+    """Classify one product. Returns a dict (see README for the shape).
+
+    If `hts_table` (a set of normalized codes from hts_validator.load_hts_table) is
+    given, the returned code is validated against it and `hts_valid` is set.
+    """
     if not description or not description.strip():
         raise ValueError("description is required")
 
+    def _validated(result):
+        from hts_validator import validate_result
+        return validate_result(result, hts_table)
+
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if client is None and not api_key:
-        return _finalize(_mock_classify(description, attributes),
-                         description, confidence_threshold, mock=True)
+        return _validated(_finalize(_mock_classify(description, attributes),
+                                    description, confidence_threshold, mock=True))
 
     try:
         import anthropic
@@ -134,7 +142,7 @@ def classify(description, *, attributes=None, model=DEFAULT_MODEL,
     text = next(b.text for b in resp.content if b.type == "text")
     result = json.loads(text)
     result["model"] = resp.model
-    return _finalize(result, description, confidence_threshold, mock=False)
+    return _validated(_finalize(result, description, confidence_threshold, mock=False))
 
 
 def main():

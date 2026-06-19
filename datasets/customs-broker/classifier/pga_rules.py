@@ -25,6 +25,7 @@ CHAPTER_PGA = {
     "10": ["FDA", "USDA APHIS PPQ"],            # cereals/grain
     "11": ["FDA"],                              # milling products
     "12": ["USDA APHIS PPQ", "FDA"],            # seeds, oil seeds
+    "13": ["FDA"],                              # gums, resins, extracts
     "15": ["FDA"],                              # fats & oils
     "16": ["FDA", "USDA FSIS"],                 # prepared meat/fish
     "17": ["FDA"],                              # sugars
@@ -42,6 +43,7 @@ CHAPTER_PGA = {
     "32": ["EPA (TSCA)"],                       # dyes, paints
     "33": ["FDA"],                              # cosmetics, perfumery
     "34": ["EPA (FIFRA)", "FDA"],               # soaps, antimicrobials
+    "35": ["FDA"],                              # albuminoids, enzymes
     "36": ["ATF", "CPSC", "DOT"],               # explosives, fireworks
     "38": ["EPA (FIFRA/TSCA)"],                 # pesticides, misc chemicals
     "39": ["CPSC", "FDA (food-contact)"],       # plastics
@@ -65,7 +67,13 @@ CHAPTER_PGA = {
     "62": ["CBP (UFLPA, marking)", "CPSC (children)"],  # apparel, woven
     "63": ["CBP (UFLPA, marking)"],             # other made-up textiles
     "64": ["CBP (marking)", "CPSC"],            # footwear
+    "68": ["CPSC (lead/tableware)"],            # stone, ceramic articles
+    "69": ["FDA (ceramic tableware)", "CPSC"],  # ceramics
+    "70": ["FDA (glass tableware)", "CPSC"],    # glass
     "71": ["CBP", "US FWS (coral/shell)"],      # precious stones, jewelry
+    "72": ["CBP (AD/CVD)", "DOC ITA"],          # iron & steel
+    "73": ["CBP (AD/CVD)"],                     # iron/steel articles
+    "76": ["CBP (AD/CVD)"],                     # aluminum
     "84": ["EPA (engines)", "DOE", "CPSC"],     # machinery
     "85": ["FCC", "DOE", "CPSC", "FDA (CDRH)"], # electrical/electronics
     "87": ["DOT/NHTSA", "EPA"],                 # vehicles
@@ -74,9 +82,15 @@ CHAPTER_PGA = {
     "90": ["FDA (CDRH)", "FCC"],                # optical, medical instruments
     "93": ["ATF", "State DDTC"],                # arms & ammunition
     "94": ["CPSC", "DOE"],                      # furniture, lighting
+    "92": ["US FWS (ivory/rosewood)"],          # musical instruments
     "95": ["CPSC"],                             # toys, games
+    "96": ["CPSC", "US FWS (ivory)"],           # misc manufactured articles
     "97": ["CBP", "State (cultural property)"], # works of art, antiques
 }
+
+# Chapters not listed default to CBP-only handling (duties, marking, possible
+# AD/CVD or UFLPA) with no commodity-specific PGA — e.g. 25-27 minerals,
+# 47-49 paper, 74-83 other base metals, 86/88/89 transport equipment.
 
 # Keyword overlays add agencies regardless of chapter (catch cross-cutting controls).
 KEYWORD_PGA = [
@@ -102,15 +116,32 @@ KEYWORD_PGA = [
 ]
 
 
+def _agency_key(label: str) -> str:
+    """Collapse 'FCC' and 'FCC (equipment authorization)' to the same agency key."""
+    return label.split(" (")[0].strip().upper()
+
+
+def _dedupe(labels: list[str]) -> list[str]:
+    """Keep one label per agency — the most specific (longest) variant, in order."""
+    best: dict[str, str] = {}
+    order: list[str] = []
+    for label in labels:
+        key = _agency_key(label)
+        if key not in best:
+            order.append(key)
+            best[key] = label
+        elif len(label) > len(best[key]):
+            best[key] = label
+    return [best[k] for k in order]
+
+
 def agencies_for(hts_code: str, description: str = "") -> list[str]:
     """Return the deduplicated, ordered list of likely PGAs for an HTS code."""
     flags: list[str] = []
     chapter = (hts_code or "").replace(".", "").strip()[:2]
-    for agency in CHAPTER_PGA.get(chapter, []):
-        if agency not in flags:
-            flags.append(agency)
+    flags.extend(CHAPTER_PGA.get(chapter, []))
     blob = (description or "").lower()
     for keys, agency in KEYWORD_PGA:
-        if any(k in blob for k in keys) and agency not in flags:
+        if any(k in blob for k in keys):
             flags.append(agency)
-    return flags
+    return _dedupe(flags)

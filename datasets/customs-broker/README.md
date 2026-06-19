@@ -4,6 +4,28 @@ A dataset of import commodity categories that, in practice, require a **licensed
 U.S. customs broker** to file the entry, together with the federal agency that
 actually controls each item's **admissibility** and the permits/forms involved.
 
+## Project map
+
+This folder grew from a dataset into a working scaffold for a brokerage/compliance
+service. The pieces:
+
+| Component | What it is |
+| --- | --- |
+| `regulated-imports.csv` | The core dataset (29 categories → agency, permit, broker role) — documented below |
+| `broker-value-scores.csv` | Per-category scoring: where a good broker delivers the most value |
+| `underserved-targeting.md` | Method for ranking importers most underserved (no/bad broker) |
+| `tools/fda_refusal_rank.py` | Public-data lead engine: ranks FDA-refused firms by broker-value score |
+| `classifier/` | AI **HTS code + PGA** classifier (Claude) with evals, pricing, validation, audit log |
+| `roadmap.md` | The three steps from list → viable service |
+| `BLOCKERS.md` | Access/tooling gaps (no network/key/paid data) + prioritized backlog |
+
+Everything runs **offline** (deterministic mocks/samples) so it's testable here;
+each piece notes what it needs to go live (an API key, the USITC HTS, the FDA export,
+a bill-of-lading vendor). Start with `BLOCKERS.md` for what to tackle next.
+
+---
+
+
 ## Important framing (read first)
 
 A **licensed customs broker does *not* "approve" goods to enter the United
