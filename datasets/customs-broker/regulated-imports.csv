@@ -1,0 +1,30 @@
+category,example_items,controlling_agency,key_permit_or_form,broker_role,notes
+Human food & beverages,"Packaged foods, produce, seafood, dietary supplements, bottled water","FDA (with USDA/APHIS, NMFS for some)","FDA Prior Notice; FSVP; affirmations of compliance (ACE PGA message set)",Files entry + transmits FDA Prior Notice and product data in ACE,"FDA can detain/refuse; 'may proceed' needed before release"
+"Meat, poultry & egg products","Beef, pork, chicken, processed meats, liquid eggs",USDA FSIS (+ FDA for some),FSIS import inspection; foreign establishment must be certified eligible,Files entry and FSIS data; coordinates reinspection,Country/plant must be on FSIS eligible list
+Live animals & animal products,"Live cattle, pets, hides, semen, animal feed",USDA APHIS Veterinary Services (+ CDC for some),VS import permit; health certificates,Files entry + APHIS permit data,"CDC regulates certain animals (e.g., turtles, bats)"
+"Plants, seeds & produce","Live plants, cut flowers, seeds, fresh fruit, soil",USDA APHIS PPQ,"PPQ Form 587 import permit; phytosanitary certificate",Files entry + PPQ permit/phyto data,Many origins prohibited; subject to quarantine
+Wood packaging & forest products,"Pallets, crating, logs, lumber",USDA APHIS PPQ,ISPM 15 treatment mark; PPQ permit for some,Files entry + APHIS data,Untreated wood packing is refused
+Alcoholic beverages,"Wine, beer, distilled spirits","TTB (+ FDA, FAA labeling)",Importer's Basic Permit; Certificate of Label Approval (COLA),Files entry + TTB data and excise tax,FDA Prior Notice also applies
+Tobacco & nicotine products,"Cigarettes, cigars, vapes, nicotine pouches",TTB + FDA (CTP),TTB permit; FDA premarket authorization,Files entry + TTB/FDA data,Many vape products lack FDA authorization and are refused
+Drugs & pharmaceuticals,"Human/animal drugs, APIs, biologics",FDA (CDER/CBER),Registered establishment; product listing; FDA review ("may proceed"),Files entry + FDA data,Unapproved/personal drug imports often refused
+Medical devices,"Diagnostics, implants, PPE, thermometers",FDA (CDRH),Establishment registration; device listing; 510(k)/PMA where required,Files entry + FDA data,Subject to detention without physical exam (DWPE)
+Cosmetics,"Makeup, skin care, fragrances",FDA,No premarket approval but must comply (MoCRA facility registration),Files entry + FDA data,Color additives must be approved
+Radiation-emitting electronics,"Lasers, microwaves, X-ray, UV lamps, sunlamps",FDA (CDRH),FDA Form 2877 radiation declaration,Files entry + FDA 2877,Must meet performance standards
+Controlled substances & listed chemicals,"Narcotics, precursors, ketamine, ephedrine",DEA,DEA import permit/declaration (Form 357/486),Files entry + DEA permit data,Importer must hold DEA registration
+Pesticides & devices,"Insecticides, herbicides, antimicrobials",EPA (FIFRA),"EPA Notice of Arrival (NOA, Form 3540-1); product registration",Files entry + EPA NOA,Unregistered pesticides refused
+Chemical substances,"Industrial chemicals, mixtures",EPA (TSCA),TSCA import certification (positive/negative),Files TSCA certification statement at entry,Must be on TSCA Inventory or exempt
+Ozone-depleting substances,"Certain refrigerants (HCFCs), HFCs",EPA (Clean Air Act / AIM Act),EPA allowances; petition for ODS,Files entry + EPA data,Allowance-controlled; illegal imports seized
+Motor vehicles & engines,"Cars, motorcycles, off-road engines",EPA + DOT/NHTSA,EPA Form 3520-1; DOT Form HS-7,Files entry + EPA/DOT declarations,Must meet EPA emissions and FMVSS safety standards
+Vehicle equipment & tires,"Tires, child seats, brake hoses, lighting",DOT/NHTSA,DOT Form HS-7 conformance declaration,Files entry + DOT data,Nonconforming items bonded or refused
+Firearms,"Handguns, rifles, shotguns",ATF (+ State/DDTC for defense articles),ATF Form 6 import permit (Form 6A release),Files entry + ATF permit,Sporting-purpose test; many military firearms barred
+Ammunition,"Cartridges, shells, primers",ATF,ATF Form 6 import permit,Files entry + ATF permit,Armor-piercing ammo restricted
+Explosives & fireworks,"Display fireworks, blasting agents","ATF (+ CPSC, DOT)",ATF Form 6; permits,Files entry + ATF data,Consumer fireworks also CPSC-regulated
+Defense articles & munitions,"USML items, military tech, body armor",State Dept DDTC (ITAR),DSP import authorization; ATF for firearms,Files entry + authorization data,Dual-use items may fall under BIS/EAR
+Wildlife & wildlife products,"Live exotic animals, furs, ivory, leather, coral",US Fish & Wildlife Service (+ CITES),FWS Form 3-177 declaration; CITES permit,Files entry + FWS data,Must clear designated ports; endangered species barred
+Fish & seafood (monitored species),"Tuna, shrimp, crab, abalone (SIMP species)",NOAA/NMFS + FDA,Seafood Import Monitoring Program (SIMP) data; IFTP permit,Files entry + NMFS data,Traceability data required at entry
+Consumer products & children's goods,"Toys, cribs, apparel, electronics, lighters",CPSC,Children's Product Certificate (CPC); General Certificate of Conformity,Files entry + CPSC data,Lead/phthalate limits; testing by accredited lab
+Radio frequency / electronic devices,"WiFi/Bluetooth devices, transmitters, phones",FCC,FCC equipment authorization (FCC ID); importer declaration,Files entry; references FCC ID,FCC Form 740 eliminated 2018; compliance still required
+Textiles & apparel (quota/marking),"Clothing, fabric, footwear",CBP (+ quota agreements),Country-of-origin marking; visas where applicable,Files entry + textile declaration,Subject to ADD/CVD and forced-labor (UFLPA) holds
+Goods subject to AD/CVD,"Steel, solar panels, furniture, chemicals",CBP / DOC ITA,AD/CVD case number; cash deposit,Files entry + AD/CVD data and deposits,Misdeclaration carries severe penalties
+Goods from sanctioned origins,"Items from embargoed countries/parties",Treasury OFAC,OFAC specific/general license,Files entry; verifies OFAC license,Blocked absent a valid license
+Cultural property & antiquities,"Archaeological artifacts, certain art",CBP + State Dept (cultural MOUs),Export permit from origin; documentation,Files entry + provenance docs,Subject to seizure/repatriation
