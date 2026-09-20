@@ -1,0 +1,16 @@
+sku,description,material,intended_use,country_of_origin,true_hts10,true_pga
+A1,"Men's knit t-shirt, 100% cotton",100% cotton,apparel,Bangladesh,6109100012,"CBP (UFLPA, marking)"
+A2,"Women's woven blouse, polyester",100% polyester,apparel,Vietnam,6206400030,"CBP (UFLPA, marking)"
+A3,"Leather running shoes, rubber sole",leather/rubber,footwear,China,6403990000,CBP (marking); CPSC
+B1,"Frozen raw shrimp, peeled",shrimp,food,India,0306170040,FDA; NOAA/NMFS (Seafood Import Monitoring Program)
+B2,"Roasted ground coffee",coffee,food,Colombia,0901210000,FDA
+B3,"Bottled still water",water,beverage,France,2201101000,FDA
+C1,"Disposable nicotine vape pen",nicotine,consumer,China,2404120000,FDA (CTP) + TTB
+C2,"Red wine 750ml",wine,beverage,Italy,2204210000,TTB; FDA
+D1,"USB Wi-Fi adapter, 2.4GHz",electronics,networking,China,8517620090,FCC (equipment authorization)
+D2,"Lithium-ion power bank 10000mAh",electronics,charging,China,8507600020,(none)
+D3,"Plastic toy building blocks",ABS plastic,toy,China,9503003000,CPSC
+E1,"Stainless steel kitchen knife",stainless steel,kitchenware,China,8211920000,CBP (AD/CVD)
+E2,"Wooden dining chair",wood,furniture,Vietnam,9401690010,USDA APHIS PPQ; CPSC
+F1,"Digital clinical thermometer",electronics,medical,China,9025190000,FDA (CDRH device)
+F2,"Lipstick, cosmetic",wax/pigment,cosmetic,France,3304100000,FDA

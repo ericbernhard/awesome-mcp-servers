@@ -1,0 +1,30 @@
+category,duty_exposure,pga_complexity,penalty_seizure_risk,time_sensitivity,de_minimis_dtc_exposure,broker_value_score
+Tobacco & nicotine products,5,5,5,2,4,21
+Textiles & apparel (quota/marking),5,4,4,3,5,21
+Human food & beverages,2,5,4,5,4,20
+Wildlife & wildlife products,3,5,5,4,3,20
+Fish & seafood (monitored species),3,5,4,5,2,19
+Consumer products & children's goods,3,4,4,3,5,19
+"Meat, poultry & egg products",2,5,5,5,1,18
+Live animals & animal products,2,5,5,5,1,18
+"Plants, seeds & produce",2,5,4,5,2,18
+Drugs & pharmaceuticals,2,5,5,3,3,18
+Radio frequency / electronic devices,4,4,3,2,5,18
+Alcoholic beverages,3,5,4,2,3,17
+Medical devices,2,5,4,3,3,17
+Firearms,3,5,5,2,2,17
+Ammunition,3,5,5,2,2,17
+Explosives & fireworks,3,5,5,3,1,17
+Goods subject to AD/CVD,5,3,5,2,2,17
+Goods from sanctioned origins,4,4,5,2,2,17
+Cosmetics,2,4,3,2,5,16
+Pesticides & devices,2,5,5,2,2,16
+Ozone-depleting substances,3,5,5,2,1,16
+Motor vehicles & engines,3,5,5,2,1,16
+Vehicle equipment & tires,3,4,4,2,3,16
+Defense articles & munitions,3,5,5,2,1,16
+Controlled substances & listed chemicals,2,5,5,2,1,15
+Cultural property & antiquities,2,4,5,2,1,14
+Wood packaging & forest products,2,4,4,2,1,13
+Radiation-emitting electronics,2,4,3,1,3,13
+Chemical substances,2,4,4,2,1,13

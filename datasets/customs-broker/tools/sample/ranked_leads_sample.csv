@@ -1,0 +1,8 @@
+firm_name,category,broker_value_score,refusals,distinct_charges,country,last_refusal,top_charges,lead_score
+Blue Horizon Seafood Co,Fish & seafood (monitored species),19,3,3,Vietnam,2026-05-19,FILTHY; SALMONELLA; VETDRUGRES,74.1
+Golden Harvest Foods Ltd,Human food & beverages,20,2,4,China,2026-05-11,FILTHY; LABELING; NO PROCESS; PESTICIDE,58.0
+NovaVape Distribution Inc,Tobacco & nicotine products,21,2,2,China,2026-05-21,NO PMTA; UNAPPROVED,48.3
+Lumiere Beauty Group,Cosmetics,16,2,2,France,2026-05-17,COLOR ADDITIVE; LABELING,36.8
+MediTech Imports LLC,Medical devices,17,1,2,India,2026-05-08,MISBRANDED; NO ESTABLISHMENT REG,19.5
+Apex Pharma Trading,Drugs & pharmaceuticals,18,1,1,India,2026-05-25,UNAPPROVED NEW DRUG,18.0
+Sunbeam Electronics Co,Radiation-emitting electronics,13,1,2,China,2026-05-13,NO 2877; PERFORMANCE STD,14.9

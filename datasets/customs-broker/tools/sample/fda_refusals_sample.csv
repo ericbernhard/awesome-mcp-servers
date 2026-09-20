@@ -1,0 +1,13 @@
+refusal_date,firm_name,country,product_description,fda_industry,refusal_charges
+2026-05-02,Golden Harvest Foods Ltd,China,Dried mushrooms,Food/Cosmetics,"FILTHY; PESTICIDE"
+2026-05-11,Golden Harvest Foods Ltd,China,Canned vegetables,Food/Cosmetics,"LABELING; NO PROCESS"
+2026-04-28,Blue Horizon Seafood Co,Vietnam,Frozen shrimp,Seafood,"SALMONELLA; VETDRUGRES"
+2026-05-19,Blue Horizon Seafood Co,Vietnam,Frozen tilapia,Seafood,"VETDRUGRES"
+2026-03-15,Blue Horizon Seafood Co,Vietnam,Crab meat,Seafood,"FILTHY"
+2026-05-21,NovaVape Distribution Inc,China,Disposable e-cigarettes,Tobacco,"UNAPPROVED; NO PMTA"
+2026-04-30,NovaVape Distribution Inc,China,Nicotine pouches,Tobacco,"UNAPPROVED"
+2026-05-08,MediTech Imports LLC,India,Surgical gloves,Devices,"NO ESTABLISHMENT REG; MISBRANDED"
+2026-05-17,Lumiere Beauty Group,France,Skin cream,Food/Cosmetics,"COLOR ADDITIVE; LABELING"
+2026-02-09,Lumiere Beauty Group,France,Lip tint,Food/Cosmetics,"COLOR ADDITIVE"
+2026-05-25,Apex Pharma Trading,India,Generic tablets,Drugs,"UNAPPROVED NEW DRUG"
+2026-05-13,Sunbeam Electronics Co,China,UV sterilizer lamps,Radiological Health,"NO 2877; PERFORMANCE STD"
